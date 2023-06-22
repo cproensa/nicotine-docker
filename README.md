@@ -91,12 +91,12 @@ Straightforward build:
 
   - *latest* to download the latest stable .deb release version
   - *testing* to donwload the latest nightly build .deb package
-  - *a specific version number* to download any version release .deb package (e.g. 3.2.8)
+  - *a specific version number* to download any version release .deb package (e.g. 3.2.9)
 
 [optional] *push user* is the user name to push image to the hub.
 
   - Example: build locally with development release: `./build testing`
      - This will create a tagged image: `nicotine-docker:testing` 
-  - Example: build with a version and push to hub: `./build 3.2.8 user_name`
-     - This will create a tagged image: `user_name/nicotine-docker:3.2.8` and push.
+  - Example: build with a version and push to hub: `./build 3.2.9 user_name`
+     - This will create a tagged image: `user_name/nicotine-docker:3.2.9` and push.
 

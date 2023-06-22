@@ -2,7 +2,7 @@
 
 usage() {
     echo "Usage: $0 <target> [push-user]"
-    echo "<target> can be 'latest', 'testing', or a specific target version, e.g. '3.2.8'"
+    echo "<target> can be 'latest', 'testing', or a specific target version, e.g. '3.2.9'"
     echo "[push-user] optionally, the user for the hub and try to perform a push"
     exit 1
 }
