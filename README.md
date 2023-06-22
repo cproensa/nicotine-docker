@@ -1,11 +1,11 @@
-# Nicotine-plus + noVNC Docker Container
+# Nicotine+ noVNC Docker Container
 
 ![Docker Pulls](https://shields.api-test.nl/docker/pulls/cproensa/nicotine-docker)
 ![Docker Image Size](https://shields.api-test.nl/docker/image-size/cproensa/nicotine-docker)
 
-This build is based on [realies/soulseek-docker](https://github.com/realies/soulseek-docker), adapted to run Nicotine-plus.
+This build is based on [realies/soulseek-docker](https://github.com/realies/soulseek-docker), adapted to run [nicotine-plus](https://github.com/nicotine-plus/nicotine-plus).
 
-His documentation has more details and most of those are also applicable here.
+The source documentation has more details and most of those are also applicable here.
 
 ## Setup
 
@@ -75,7 +75,7 @@ services:
 ### How To Build
 
 The Dockerfile script will copy an external .deb package during the build process, named `debian-package.zip`, which is the release package as described in the 
-![Nicotine-plus documentation](https://github.com/nicotine-plus/nicotine-plus/blob/master/doc/DOWNLOADS.md#ubuntudebian)
+![Nicotine+ documentation](https://github.com/nicotine-plus/nicotine-plus/blob/master/doc/DOWNLOADS.md#ubuntudebian)
 
 Straightforward build:
 
