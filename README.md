@@ -99,4 +99,62 @@ Straightforward build:
      - This will create a tagged image: `nicotine-docker:testing` 
   - Example: build with a version and push to hub: `./build 3.2.9 user_name`
      - This will create a tagged image: `user_name/nicotine-docker:3.2.9` and push.
+   
+
+## Additional tips
+
+### Reverse proxy with subpath
+
+It's tricky to configure this noVnc setup behind a reverse proxy under a subpath. Here's an example for nginx reverse proxy.
+
+The aim is: assuming the direct service is accesible as `http://<host>:<port>`, to have a different host proxying this service as `http://<proxy_host>/nic`.
+This is usually done when this proxy host is desired to work as an entry point for several services, each one beneath a different subpath (in this example only the rules for the nicotine redirection is included).
+
+Key points:
+1) `location /nic/` for the general redirection.
+
+This will however still cause noVnc to look for the websocket at the root location of our proxy host (`/<proxy_host>/websockify`). To avoid this and keep all resources under the `/nic/`subpath, next step is needed:
+
+2) `location /nic/websockify` pointing to the websocket, adding specific directives optimized for websocket
+
+And, now it should be accesible with: `http://<proxy_host>/nic/vnc.html?path=nic/websockify`. Notice the parameter to set explicitly the path to the websocket.
+
+To make it easier, a third rule is added:
+
+3) `location /nic` for an automatic redirect to that url:
+ 
+
+Now our service is accesible simply with `http://<proxy_host>/nic`
+
+*Note: `absolute_redirect off` to allow relative url in the redirect, and keep host and port of the original request. Good for example, when this server is a container mapped to an external port different than 80*
+
+##### Example configuration file:
+```
+server {
+    listen 80;
+    server_name _;
+
+    absolute_redirect off;
+
+    # proxy.conf include for common proxy directives
+    # for example:  https://github.com/linuxserver/docker-swag/commits/master/root/defaults/nginx/proxy.conf.sample
+ 
+    location /nic {
+        return 302 /nic/vnc.html?path=nic/websockify&autoconnect=true;       
+    }
+
+    location /nic/ {
+        include /config/nginx/proxy.conf;
+        proxy_pass http://<host>:<port>/;
+    }
+
+    location /nic/websockify {
+        include /config/nginx/proxy.conf;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_pass http://<host>:<port>;
+    }
+}
+```
+  
 
