@@ -140,7 +140,7 @@ server {
     # for example:  https://github.com/linuxserver/docker-swag/commits/master/root/defaults/nginx/proxy.conf.sample
  
     location /nic {
-        return 302 /nic/vnc.html?path=nic/websockify&autoconnect=true;       
+        return 302 /nic/vnc.html?path=nic/websockify&autoconnect=true&resize=remote;       
     }
 
     location /nic/ {
