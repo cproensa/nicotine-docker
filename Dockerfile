@@ -10,7 +10,7 @@ RUN apt-get update && \
     mkdir /usr/share/novnc/utils/websockify && \
     curl -fL# https://github.com/novnc/websockify/archive/master.tar.gz -o /tmp/websockify.tar.gz && \
     tar -xf /tmp/websockify.tar.gz --strip-components=1 -C /usr/share/novnc/utils/websockify && \
-    apt-get install -y adwaita-icon-theme dbus-user-session dconf-gsettings-backend dconf-service gir1.2-atk-1.0 gir1.2-freedesktop gir1.2-gdkpixbuf-2.0 gir1.2-glib-2.0 gir1.2-gtk-3.0 gir1.2-harfbuzz-0.0 gir1.2-pango-1.0 gtk-update-icon-cache hicolor-icon-theme humanity-icon-theme libargon2-1 libatk-bridge2.0-0 libatk1.0-0 libatk1.0-data libatspi2.0-0 libavahi-client3 libavahi-common-data libavahi-common3 libcolord2 libcryptsetup12 libcups2 libdconf1 libdevmapper1.02.1 libepoxy0 libgirepository-1.0-1 libgtk-3-0 libgtk-3-common libip4tc2 libjson-c5 libkmod2 liblcms2-2 libpam-systemd libwayland-client0 libwayland-cursor0 libwayland-egl1 libxcomposite1 libxdamage1 libxkbcommon0 python3-gdbm python3-gi systemd systemd-sysv ubuntu-mono librsvg2-common --no-install-recommends && \
+    apt-get install -y adwaita-icon-theme dbus-user-session dconf-gsettings-backend dconf-service gir1.2-atk-1.0 gir1.2-freedesktop gir1.2-gdkpixbuf-2.0 gir1.2-glib-2.0 gir1.2-gtk-3.0 gir1.2-harfbuzz-0.0 gir1.2-pango-1.0 gtk-update-icon-cache hicolor-icon-theme humanity-icon-theme libargon2-1 libatk-bridge2.0-0 libatk1.0-0 libatspi2.0-0 libavahi-client3 libavahi-common-data libavahi-common3 libcolord2 libcryptsetup12 libcups2 libdconf1 libdevmapper1.02.1 libepoxy0 libgirepository-1.0-1 libgtk-3-0 libgtk-3-common libip4tc2 libjson-c5 libkmod2 liblcms2-2 libpam-systemd libwayland-client0 libwayland-cursor0 libwayland-egl1 libxcomposite1 libxdamage1 libxkbcommon0 python3-gdbm python3-gi systemd systemd-sysv ubuntu-mono librsvg2-common python3-cairo python3-gi-cairo --no-install-recommends && \
     apt-get purge -y binutils && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
@@ -29,7 +29,7 @@ RUN curl -fL# https://site-assets.fontawesome.com/releases/v6.0.0/svgs/solid/clo
     ln -s /data/nicotine/downloads /usr/share/novnc/downloads && \
     ln -s /share /usr/share/novnc/shared && \
     ln -s /data/nicotine/logs /usr/share/novnc/logs && \
-    useradd -u 1000 -U -d /data -s /bin/false soulseek && \
+    useradd -u 1100 -U -d /data -s /bin/false soulseek && \
     usermod -G users soulseek && \
     chown -R soulseek:soulseek /data && \
     rm -rf /tmp/*
