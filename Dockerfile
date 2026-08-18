@@ -16,10 +16,10 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 COPY debian-package.zip /tmp/debian-package.zip 
 COPY copy/ui.patch /tmp
-RUN curl -fL# https://site-assets.fontawesome.com/releases/v6.0.0/svgs/solid/cloud-arrow-down.svg -o /usr/share/novnc/app/images/downloads.svg && \
-    curl -fL# https://site-assets.fontawesome.com/releases/v6.0.0/svgs/solid/folder-music.svg -o /usr/share/novnc/app/images/shared.svg && \
-    curl -fL# https://site-assets.fontawesome.com/releases/v6.0.0/svgs/solid/comments.svg -o /usr/share/novnc/app/images/logs.svg && \
-    bash -c 'sed -i "s/<path/<path style=\"fill:white\"/" /usr/share/novnc/app/images/{downloads,logs,shared}.svg' && \
+COPY copy/cloud-arrow-down-solid-full.svg /usr/share/novnc/app/images/downloads.svg
+COPY copy/folder-solid-full.svg /usr/share/novnc/app/images/shared.svg
+COPY copy/comments-solid-full.svg /usr/share/novnc/app/images/logs.svg
+RUN bash -c 'sed -i "s/<path/<path style=\"fill:white\"/" /usr/share/novnc/app/images/{downloads,logs,shared}.svg' && \
     patch /usr/share/novnc/vnc.html < /tmp/ui.patch && \
     sed -i 's/10px 0 5px/8px 0 6px/' /usr/share/novnc/app/styles/base.css && \
     unzip /tmp/debian-package.zip -d /tmp && \
